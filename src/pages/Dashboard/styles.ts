@@ -8,8 +8,8 @@ const Container = styled.View`
 `;
 
 const Title = styled.Text`
+    font-family: ${({theme}) => theme.fonts.bold};
     color: ${({theme}) => theme.colors.attention};
-    font-weight: bold;
     font-size: 32px;
     padding-bottom: 4px;
     border-bottom-width: 1px;
