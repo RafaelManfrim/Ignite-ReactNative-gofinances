@@ -9,14 +9,14 @@ const Container = styled.View`
 
 const Header = styled.View`
     width: 100%;
-    height: ${RFPercentage(42)}px;
+    height: ${RFPercentage(32)}px;
     background-color: ${({theme}) => theme.colors.primary};
 
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
 `
 
-const HeaderContent = styled.View`
+const UserInfo = styled.View`
     width: 100%;
     padding: 0 28px;
     margin: 0 auto;
@@ -42,21 +42,28 @@ const User = styled.View`
 
 const Greatings = styled.Text`
     color: ${({theme}) => theme.colors.shape};
-    font-size: ${RFValue(14)}px};
+    font-size: ${RFValue(15)}px};
     font-family: ${({theme}) => theme.fonts.regular};
-    line-height: ${RFValue(18)}px};
+    line-height: ${RFValue(22)}px};
 `
 
 const UserName = styled.Text`
     color: ${({theme}) => theme.colors.shape};
-    font-size: ${RFValue(14)}px};
+    font-size: ${RFValue(16)}px};
     font-family: ${({theme}) => theme.fonts.bold};
     line-height: ${RFValue(18)}px};
 `
 
 const LogoutButton = styled(Feather)`
     color: ${({theme}) => theme.colors.secondary};
-    font-size: ${RFValue(28)}px};
+    font-size: ${RFValue(32)}px;
 `
 
-export { Container, Header, HeaderContent, Profile, Avatar, User, Greatings, UserName, LogoutButton }
+const Content = styled.ScrollView.attrs({
+    horizontal: true,
+    contentContainerStyle: { paddingLeft: 28, paddingRight: 0 }
+})`
+    margin-top: -${RFValue(56)}px;
+`
+
+export { Container, Header, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, Content }
