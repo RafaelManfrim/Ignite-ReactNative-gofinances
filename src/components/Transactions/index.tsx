@@ -2,13 +2,13 @@ import { TransactionCard, TransactionCardProps  } from '../TransactionCard'
 import { TransactionsList, Title, TransactionsArea } from './styles'
 
 export interface DataListProps extends TransactionCardProps {
-    id: number
+    id: string
 }
 
 export function Transactions() {
     const data: DataListProps[] = [
         {
-            id: 1,
+            id: '1',
             data: {
                 title: "Desenvolvimento de site",
                 amount: "10000",
@@ -18,7 +18,7 @@ export function Transactions() {
             }
         },
         {
-            id: 2,
+            id: '2',
             data: {
                 title: "Lanche no shopping",
                 amount: "59",
@@ -28,7 +28,7 @@ export function Transactions() {
             }
         },
         {
-            id: 3,
+            id: '3',
             data: {
                 title: "Camisa nova",
                 amount: "27",
@@ -38,7 +38,7 @@ export function Transactions() {
             }
         },
         {
-            id: 4,
+            id: '4',
             data: {
                 title: "Camisa nova",
                 amount: "27",
@@ -48,7 +48,7 @@ export function Transactions() {
             }
         },
         {
-            id: 5,
+            id: '5',
             data: {
                 title: "Camisa nova",
                 amount: "27",
@@ -62,7 +62,7 @@ export function Transactions() {
     return (
         <TransactionsArea>
             <Title>Listagem</Title>
-            <TransactionsList data={data} keyExtractor={(item: DataListProps) => item.id} renderItem={({ item }) => <TransactionCard data={item.data} />}/>
+            <TransactionsList data={data} keyExtractor={(item) => item.id} renderItem={({ item }) => <TransactionCard data={item.data} />}/>
         </TransactionsArea>
     )
 }

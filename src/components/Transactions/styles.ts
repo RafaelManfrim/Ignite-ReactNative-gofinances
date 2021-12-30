@@ -1,7 +1,7 @@
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native'
 import { DataListProps } from '.'
-import { FlatList } from 'react-native';
+import { FlatList, FlatListProps } from 'react-native';
 
 const TransactionsArea = styled.View`
     flex: 35;
@@ -9,7 +9,7 @@ const TransactionsArea = styled.View`
     margin-top: ${RFPercentage(3)}px;
 `
 
-const TransactionsList = styled(FlatList as new () => FlatList<DataListProps>).attrs({
+const TransactionsList = styled(FlatList as new (props: FlatListProps<DataListProps>) => FlatList<DataListProps>).attrs({
     showsVerticalScrollIndicator: false
 })``
 
