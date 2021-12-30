@@ -1,16 +1,30 @@
 import React from 'react'
 import { Container, Header, Title, Icon, Content, Amount, LastTransaction } from './styles'
 
-export function HighlightCard() {
+interface CardProps {
+    title: string
+    amount: string
+    lastTransaction: string
+    type: 'deposit' | 'withdraw' | 'total'
+}
+
+const icon = {
+    deposit: "arrow-up-circle",
+    withdraw: "arrow-down-circle",
+    total: "dollar-sign"
+}
+
+export function HighlightCard({ title, amount, lastTransaction, type }: CardProps) {
+
     return (
-        <Container>
+        <Container type={type} amount={600}>
             <Header>
-                <Title>Entrada</Title>
-                <Icon name="arrow-up-circle" />
+                <Title type={type}>{title}</Title>
+                <Icon name={icon[type]} type={type} />
             </Header>
             <Content>
-                <Amount>1000</Amount>
-                <LastTransaction>02 de março</LastTransaction>
+                <Amount type={type}>{amount}</Amount>
+                <LastTransaction type={type}>{lastTransaction}</LastTransaction>
             </Content>
         </Container>
     )
