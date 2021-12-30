@@ -9,11 +9,11 @@ const Container = styled.View`
 
 const Header = styled.View`
     width: 100%;
-    height: ${RFPercentage(32)}px;
+    height: ${RFPercentage(28)}px;
+    padding-top: ${RFValue(28)}px;
     background-color: ${({theme}) => theme.colors.primary};
-
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 `
 
 const UserInfo = styled.View`
@@ -61,9 +61,10 @@ const LogoutButton = styled(Feather)`
 
 const Content = styled.ScrollView.attrs({
     horizontal: true,
-    contentContainerStyle: { paddingLeft: 28, paddingRight: 0 }
+    contentContainerStyle: { paddingLeft: 28, paddingRight: 0 },
+    showsHorizontalScrollIndicator: false,
 })`
-    margin-top: -${RFValue(56)}px;
+    margin-top: -${RFValue(72)}px;
 `
 
 export { Container, Header, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, Content }
