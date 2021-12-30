@@ -6,7 +6,7 @@ const Container = styled.View`
     background-color: ${({theme}) => theme.colors.background};
 `
 
-const Content = styled.ScrollView.attrs({
+const Cards = styled.ScrollView.attrs({
     horizontal: true,
     contentContainerStyle: { paddingLeft: 28, paddingRight: 0 },
     showsHorizontalScrollIndicator: false,
@@ -14,4 +14,4 @@ const Content = styled.ScrollView.attrs({
     margin-top: -${RFValue(72)}px;
 `
 
-export { Container, Content }
+export { Container, Cards }
