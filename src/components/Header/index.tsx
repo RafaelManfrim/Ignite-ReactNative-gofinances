@@ -1,18 +1,27 @@
-import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton } from './styles'
+import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, HeaderTitle } from './styles'
 
-export function Header() {
+interface HeaderProps {
+    dashboardHeader?: boolean
+    headerTitle?: string 
+}
+
+export function Header({ dashboardHeader = false, headerTitle }: HeaderProps) {
     return (
-        <HeaderContainer>
-            <UserInfo>
-                <Profile>
-                    <Avatar source={{ uri: 'https://avatars.githubusercontent.com/u/72226013?v=4' }} />
-                    <User>
-                        <Greatings>Olá,</Greatings>
-                        <UserName>Rafael</UserName>
-                    </User>
-                </Profile>
-                <LogoutButton name="power" />
-            </UserInfo>
+        <HeaderContainer size={dashboardHeader ? 28 : 14}>
+            {dashboardHeader ? (
+                <UserInfo>
+                    <Profile>
+                        <Avatar source={{ uri: 'https://avatars.githubusercontent.com/u/72226013?v=4' }} />
+                        <User>
+                            <Greatings>Olá,</Greatings>
+                            <UserName>Rafael</UserName>
+                        </User>
+                    </Profile>
+                    <LogoutButton name="power" />
+                </UserInfo>
+            ) : (
+                <HeaderTitle>{headerTitle}</HeaderTitle>
+            )}
         </HeaderContainer>
     )
 }

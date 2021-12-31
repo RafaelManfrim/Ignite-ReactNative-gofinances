@@ -2,9 +2,13 @@ import styled from 'styled-components/native'
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
 
-const HeaderContainer = styled.View`
+type HeaderContentProps = {
+    size: number
+}
+
+const HeaderContainer = styled.View<HeaderContentProps>`
     width: 100%;
-    height: ${RFPercentage(28)}px;
+    height: ${props => RFPercentage(props.size)}px;
     padding-top: ${RFValue(28)}px;
     background-color: ${({theme}) => theme.colors.primary};
     flex-direction: column;
@@ -54,4 +58,11 @@ const LogoutButton = styled(Feather)`
     font-size: ${RFValue(32)}px;
 `
 
-export { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton }
+const HeaderTitle = styled.Text`
+    font-size: ${RFValue(22)}px};
+    font-family: ${({theme}) => theme.fonts.regular};
+    color: ${({theme}) => theme.colors.shape};
+    text-align: center;
+`
+
+export { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, HeaderTitle }
