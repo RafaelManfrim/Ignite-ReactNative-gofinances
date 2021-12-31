@@ -1,15 +1,19 @@
 import { StatusBar } from 'react-native'
-import { Header } from '../../components/Header'
-import theme from '../../global/styles/theme'
-import {  } from './styles'
 import { ContentWrapper } from '../../components/Wrapper/styles'
+import { Header } from '../../components/Header'
+import { Input } from '../../components/Form/Input'
+import theme from '../../global/styles/theme'
+import { Form } from './styles'
 
 export function TransactionRegister() {
     return (
         <ContentWrapper>
             <StatusBar backgroundColor={theme.colors.primary} />
-            <Header headerTitle="Cadastro" />
-            
+            <Header title="Cadastro" />
+            <Form>
+                <Input placeholder="Nome" />
+                <Input placeholder="Preço" />
+            </Form>
         </ContentWrapper>
     )
 }

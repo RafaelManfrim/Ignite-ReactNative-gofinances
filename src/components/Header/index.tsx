@@ -2,10 +2,10 @@ import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, 
 
 interface HeaderProps {
     dashboardHeader?: boolean
-    headerTitle?: string 
+    title?: string 
 }
 
-export function Header({ dashboardHeader = false, headerTitle }: HeaderProps) {
+export function Header({ dashboardHeader = false, title }: HeaderProps) {
     return (
         <HeaderContainer size={dashboardHeader ? 28 : 14}>
             {dashboardHeader ? (
@@ -20,7 +20,7 @@ export function Header({ dashboardHeader = false, headerTitle }: HeaderProps) {
                     <LogoutButton name="power" />
                 </UserInfo>
             ) : (
-                <HeaderTitle>{headerTitle}</HeaderTitle>
+                <HeaderTitle>{title}</HeaderTitle>
             )}
         </HeaderContainer>
     )
