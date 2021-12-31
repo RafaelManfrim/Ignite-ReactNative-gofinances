@@ -9,4 +9,9 @@ const Form = styled.View`
 
 const Fields = styled.View``
 
-export { Form, Fields }
+const TypeSelectArea = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+`
+
+export { Form, Fields, TypeSelectArea }
