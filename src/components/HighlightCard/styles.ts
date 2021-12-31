@@ -17,8 +17,8 @@ const Container = styled.View<CardProps>`
     width: ${RFValue(256)}px;
     height: ${RFValue(128)}px;
     border-radius: 8px;
-    padding: 20px 24px 32px;
-    margin-right: 28px;
+    padding: ${RFValue(20)}px ${RFValue(24)}px ${RFValue(32)}px;
+    margin-right: ${RFValue(28)}px;
 `
 
 const Header = styled.View`
@@ -28,7 +28,7 @@ const Header = styled.View`
 
 const Title = styled.Text<CardProps>`
     font-family: ${({theme}) => theme.fonts.regular};
-    font-size: ${RFValue(16)}px;
+    font-size: ${RFValue(18)}px;
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.title};
 `
 
@@ -42,15 +42,15 @@ const Content = styled.View``
 const Amount = styled.Text<CardProps>`
     font-family: ${({theme}) => theme.fonts.medium};
     font-size: ${RFValue(24)}px;
-    margin-top: 16px;
+    margin-top: ${RFValue(10)}px;
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text_dark};
 `
 
 const LastTransaction = styled.Text<CardProps>`
     font-family: ${({theme}) => theme.fonts.regular};
-    font-size: ${RFValue(10)}px;
+    font-size: ${RFValue(11)}px;
     color: ${({theme, type}) => type === 'total' ? theme.colors.shape : theme.colors.text};
-    margin-top: -12px;
+    margin-top: ${RFValue(-10)}px;
 `
 
 export { Container, Header, Title, Icon, Content, Amount, LastTransaction }

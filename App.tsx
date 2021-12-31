@@ -19,7 +19,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <TransactionRegister />
+      <Dashboard />
     </ThemeProvider>
   )
 }

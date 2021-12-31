@@ -36,7 +36,7 @@ const Avatar = styled.Image`
 `
 
 const User = styled.View`
-    margin-left: 16px;
+    margin-left: ${RFValue(16)}px;
 `
 
 const Greatings = styled.Text`

@@ -4,7 +4,7 @@ import { DataListProps } from '.'
 import { FlatList, FlatListProps } from 'react-native';
 
 const TransactionsArea = styled.View`
-    flex: 35;
+    flex: 68;
     padding: 0 28px;
     margin-top: ${RFPercentage(3)}px;
 `
@@ -14,9 +14,11 @@ const TransactionsList = styled(FlatList as new (props: FlatListProps<DataListPr
 })``
 
 const Title = styled.Text`
-    font-size: ${RFValue(18)}px;
-    font-family: ${({theme}) => theme.fonts.regular};
-    margin-bottom: 12px;
+    font-size: 18px;
+    text-align: center;
+    color: ${({theme}) => theme.colors.text}
+    font-family: ${({theme}) => theme.fonts.medium};
+    margin-bottom: ${RFValue(12)}px;
 `
 
 export { TransactionsArea, TransactionsList, Title }

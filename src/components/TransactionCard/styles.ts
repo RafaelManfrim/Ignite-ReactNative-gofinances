@@ -8,20 +8,20 @@ type CardProps = {
 
 const Card = styled.View`
     background-color: ${({theme}) => theme.colors.shape};
-    margin-bottom: 16px;
-    padding: 16px 24px;
+    margin-bottom: ${RFValue(14)}px;
+    padding: ${RFValue(16)}px ${RFValue(24)}px;
     border-radius: 8px;
 `
 
 const Title = styled.Text`
     font-family: ${({theme}) => theme.fonts.regular};
-    font-size: ${RFValue(12)}px;
+    font-size: 14px;
     color: ${({theme}) => theme.colors.title};
 `
 
 const Amount = styled.Text<CardProps>`
     font-family: ${({theme}) => theme.fonts.medium};
-    font-size: ${RFValue(20)}px;
+    font-size: 22px;
     color: ${({theme, type}) => type === 'deposit' ? theme.colors.success : theme.colors.attention};
 `
 
@@ -44,7 +44,7 @@ const Name = styled.Text`
     margin-left: 8px;
     margin-top: 4px;
     font-family: ${({theme}) => theme.fonts.regular};
-    font-size: ${RFValue(12)}px;
+    font-size: 12px;
     color: ${({theme}) => theme.colors.text};
 `
 
