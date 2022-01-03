@@ -7,6 +7,7 @@ import { Button } from '../../components/Form/Button'
 import theme from '../../global/styles/theme'
 import { Form, Fields, TypeSelectArea } from './styles'
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton'
+import { CategorySelect } from '../../components/Form/CategorySelect'
 
 export function TransactionRegister() {
     const [typeSelected, setTypeSelected] = useState('')
@@ -27,6 +28,7 @@ export function TransactionRegister() {
                         <TransactionTypeButton isActive={typeSelected === 'deposit'} type="deposit" title="Entrada" onPress={() => handleTypeSelect('deposit')} />
                         <TransactionTypeButton isActive={typeSelected === 'withdraw'} type="withdraw" title="Saída" onPress={() => handleTypeSelect('withdraw')} />
                     </TypeSelectArea>
+                    <CategorySelect title="Categoria" />
                 </Fields>
                 <Button title="Enviar"/>
             </Form>
