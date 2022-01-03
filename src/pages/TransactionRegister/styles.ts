@@ -16,4 +16,8 @@ const TypeSelectArea = styled.View`
     margin-bottom: ${RFValue(10)}px;
 `
 
-export { Form, Fields, TypeSelectArea }
+const Footer = styled.View`
+    margin-bottom: 12px;
+`
+
+export { Form, Fields, TypeSelectArea, Footer }

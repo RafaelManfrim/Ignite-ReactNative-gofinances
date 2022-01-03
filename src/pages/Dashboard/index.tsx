@@ -1,6 +1,6 @@
 import React from 'react'
 import { StatusBar } from 'react-native'
-import { ContentWrapper } from '../../components/Wrapper/styles'
+import { Wrapper } from '../../components/Wrapper'
 import { Header } from '../../components/Header'
 import { HighlightCard } from '../../components/HighlightCard'
 import { Transactions } from '../../components/Transactions'
@@ -9,7 +9,7 @@ import { Cards } from './styles'
 
 export default function Dashboard() {
     return (
-        <ContentWrapper>
+        <Wrapper>
             <StatusBar backgroundColor={theme.colors.primary} />
             <Header dashboardHeader />
             <Cards>
@@ -18,6 +18,6 @@ export default function Dashboard() {
                 <HighlightCard title="Total" amount="R$ 600,00" lastTransaction="01 a 16 de abril" type="total"/>
             </Cards>
             <Transactions />
-        </ContentWrapper>
+        </Wrapper>
     )
 }

@@ -2,11 +2,12 @@ import { CatSelectContainer, Category, Icon } from './styles'
 
 interface CatSelectProps {
     title: string
+    onPress: () => void
 }
 
-export function CategorySelect({ title }: CatSelectProps ) {
+export function CategorySelectButton({ title, onPress }: CatSelectProps ) {
     return (
-        <CatSelectContainer>
+        <CatSelectContainer onPress={onPress}>
             <Category>{title}</Category>
             <Icon name="chevron-down" />
         </CatSelectContainer>

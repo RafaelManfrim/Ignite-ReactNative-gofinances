@@ -15,7 +15,7 @@ const CatSelectContainer = styled.TouchableOpacity.attrs({
 
 const Category = styled.Text`
     font-size: ${RFValue(14)}px;
-    color: ${({theme}) => theme.colors.text};
+    color: ${({theme}) => theme.colors.text_dark};
 `
 
 const Icon = styled(Feather)`

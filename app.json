@@ -1,11 +1,19 @@
 {
   "expo": {
     "name": "gofinances",
-    "slug": "gofinances",
+    "slug": "GoFinans",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
+  },
+  "ios": {
+    "bundleIdentifier": "rafamanfrim.gofinances",
+    "buildNumber": "1.0.0"
+  },
+  "android": {
+    "package": "rafamanfrim.gofinances",
+    "versionCode": 1
   },
   "name": "gofinances"
 }
