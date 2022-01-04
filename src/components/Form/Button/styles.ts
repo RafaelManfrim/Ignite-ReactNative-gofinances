@@ -3,7 +3,7 @@ import styled from "styled-components/native"
 
 const ButtonContainer = styled.TouchableOpacity`
     background-color: ${({ theme }) => theme.colors.secondary};
-    padding: ${RFValue(20)}px ${RFValue(16)}px;
+    padding: ${RFValue(18)}px ${RFValue(16)}px;
     border-radius: 8px;
 `
 

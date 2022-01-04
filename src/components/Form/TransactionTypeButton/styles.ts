@@ -13,7 +13,7 @@ type TransactionTypeContainerProps = {
 
 const TransactionTypeContainer = styled.TouchableOpacity<TransactionTypeContainerProps>`
     width: 47%;
-    padding: ${RFValue(20)}px;
+    padding: ${RFValue(18)}px;
     flex-direction: row;
     align-items: center;
     justify-content: center;
