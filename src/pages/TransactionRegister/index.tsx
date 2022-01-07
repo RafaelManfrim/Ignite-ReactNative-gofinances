@@ -23,7 +23,7 @@ type FormData = {
     amount: string
 }
 
-export function TransactionRegister() {
+export default function TransactionRegister() {
     const [category, setCategory] = useState({ key: 'category', name: 'Categoria' })
     const [typeSelected, setTypeSelected] = useState('')
     const [categoryModalOpen, setCategoryModalOpen] = useState(false)
