@@ -1,3 +1,4 @@
+import { BorderlessButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native'
 import { RFValue, RFPercentage } from 'react-native-responsive-fontsize'
 import { Feather } from '@expo/vector-icons'
@@ -53,7 +54,9 @@ const UserName = styled.Text`
     line-height: ${RFValue(18)}px};
 `
 
-const LogoutButton = styled(Feather)`
+const LogoutButton = styled(BorderlessButton)``
+
+const Icon = styled(Feather)`
     color: ${({theme}) => theme.colors.secondary};
     font-size: ${RFValue(32)}px;
 `
@@ -65,4 +68,4 @@ const HeaderTitle = styled.Text`
     text-align: center;
 `
 
-export { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, HeaderTitle }
+export { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, Icon, HeaderTitle }

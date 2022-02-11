@@ -1,4 +1,4 @@
-import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, HeaderTitle } from './styles'
+import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, Icon, HeaderTitle } from './styles'
 
 interface HeaderProps {
     dashboardHeader?: boolean
@@ -17,7 +17,9 @@ export function Header({ dashboardHeader = false, title }: HeaderProps) {
                             <UserName>Rafael</UserName>
                         </User>
                     </Profile>
-                    <LogoutButton name="power" />
+                    <LogoutButton onPress={() => {}}>
+                        <Icon name="power" />
+                    </LogoutButton>
                 </UserInfo>
             ) : (
                 <HeaderTitle>{title}</HeaderTitle>
