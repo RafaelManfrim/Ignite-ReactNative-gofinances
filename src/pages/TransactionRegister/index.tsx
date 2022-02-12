@@ -96,7 +96,7 @@ export default function TransactionRegister() {
             <Form>
                 <Fields>
                     <InputForm control={control} name="name" placeholder="Nome" autoCapitalize="sentences" autoCorrect={false} error={errors?.name?.message} />
-                    <InputForm control={control} name="amount" placeholder="Preço" autoCapitalize="sentences" autoCorrect={false} keyboardType="number-pad" error={errors?.amount?.message} />
+                    <InputForm control={control} name="amount" placeholder="Valor" autoCapitalize="sentences" autoCorrect={false} keyboardType="number-pad" error={errors?.amount?.message} />
                     <TypeSelectArea>
                         <TransactionTypeButton isActive={typeSelected === 'deposit'} type="deposit" title="Entrada" onPress={() => handleTypeSelect('deposit')} />
                         <TransactionTypeButton isActive={typeSelected === 'withdraw'} type="withdraw" title="Saída" onPress={() => handleTypeSelect('withdraw')} />
