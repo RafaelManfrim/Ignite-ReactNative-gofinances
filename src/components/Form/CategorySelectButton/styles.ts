@@ -1,10 +1,9 @@
 import styled from "styled-components/native"
 import { Feather } from '@expo/vector-icons'
 import { RFValue } from "react-native-responsive-fontsize"
+import { RectButton } from "react-native-gesture-handler"
 
-const CatSelectContainer = styled.TouchableOpacity.attrs({
-    activeOpacity: 0.7
-})`
+const CatSelectContainer = styled(RectButton)`
     background-color: ${({theme}) => theme.colors.shape};
     flex-direction: row;
     align-items: center;

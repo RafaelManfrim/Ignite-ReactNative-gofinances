@@ -1,4 +1,5 @@
 import { Feather } from '@expo/vector-icons';
+import { RectButton } from 'react-native-gesture-handler';
 import { RFValue } from "react-native-responsive-fontsize"
 import styled, { css } from "styled-components/native"
 
@@ -11,7 +12,7 @@ type TransactionTypeContainerProps = {
     type: 'deposit' | 'withdraw'
 }
 
-const TransactionTypeContainer = styled.TouchableOpacity<TransactionTypeContainerProps>`
+const TransactionTypeContainer = styled(RectButton)<TransactionTypeContainerProps>`
     width: 47%;
     padding: ${RFValue(18)}px;
     flex-direction: row;

@@ -6,9 +6,7 @@ type CategoryProps = {
     isActive: boolean
 }
 
-const Category = styled.TouchableOpacity.attrs({
-    activeOpacity: 0.6
-})<CategoryProps>`
+const Category = styled.TouchableOpacity.attrs({ activeOpacity: 0.6 })<CategoryProps>`
     flex-direction: row;
     align-items: center;
     margin: 12px 28px 0;
