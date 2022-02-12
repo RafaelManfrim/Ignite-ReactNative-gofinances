@@ -66,11 +66,17 @@ export default function TransactionRegister() {
 
         try {
             const storedData = await AsyncStorage.getItem(collectionKey)
-            const currentData = storedData ? JSON.parse(storedData) : []
+            const currentData = storedData ? JSON.parse(storedData) : {}
 
-            const dataFormated = { transactions: [...currentData.transactions, data] }
+            if(currentData.transactions) {
+                const dataFormated = { transactions: [...currentData.transactions, data] }
+                
+                await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormated))
+            } else {
+                const dataFormated = { transactions: [ data ] }
 
-            await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormated))
+                await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormated))
+            }
 
             reset()
             setTypeSelected("")
