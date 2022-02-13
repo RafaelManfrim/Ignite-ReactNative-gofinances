@@ -9,15 +9,7 @@ import { Cards } from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { categories } from '../../utils/categories'
 import { useFocusEffect } from '@react-navigation/native'
-
-type TransactionFromStorage = {
-    id: string
-    amount: number
-    category: string
-    date: Date
-    name: string
-    type: "deposit" | "withdraw"
-}
+import { TransactionFromStorage } from '../../types'
 
 export default function Dashboard() {
     const [transactions, setTransactions] = useState<DataListProps[]>([])
