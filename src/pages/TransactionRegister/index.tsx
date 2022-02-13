@@ -51,9 +51,13 @@ export default function TransactionRegister() {
     }
 
     async function handleRegister(values: FormData) {
-        !typeSelected && Alert.alert('Selecione o tipo da transação')
+        if(!typeSelected) {
+            return Alert.alert('Selecione o tipo da transação')
+        } 
 
-        category.key === 'category' && Alert.alert('Selecione a categoria')
+        if(category.key === 'category') {
+            return Alert.alert('Selecione a categoria')
+        }
 
         const data = {
             id: String(uuid.v4()),
