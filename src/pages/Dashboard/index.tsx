@@ -86,13 +86,18 @@ export default function Dashboard() {
                     
                 }
 
-                lastTransaction = new Date(Math.max.apply(Math, transactionsDates))
+                if(transactionsDates.length > 0) {
+                    lastTransaction = new Date(Math.max.apply(Math, transactionsDates))
+    
+                    return Intl.DateTimeFormat('pt-BR', { 
+                        day: '2-digit', 
+                        month: '2-digit', 
+                        year: '2-digit' 
+                    }).format(new Date(lastTransaction))
+                }
 
-                return Intl.DateTimeFormat('pt-BR', { 
-                    day: '2-digit', 
-                    month: '2-digit', 
-                    year: '2-digit' 
-                }).format(new Date(lastTransaction))
+                return ''
+
             }
 
             setHighlightCardValues({
