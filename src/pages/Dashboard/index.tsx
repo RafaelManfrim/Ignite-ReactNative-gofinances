@@ -1,10 +1,8 @@
-import React, { useCallback, useEffect, useState } from 'react'
-import { StatusBar } from 'react-native'
+import React, { useCallback, useState } from 'react'
 import { Wrapper } from '../../components/Wrapper'
 import { Header } from '../../components/Header'
 import { HighlightCard } from '../../components/HighlightCard'
 import { DataListProps, Transactions } from '../../components/Transactions'
-import theme from '../../global/styles/theme'
 import { Cards } from './styles'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { categories } from '../../utils/categories'
@@ -115,7 +113,6 @@ export default function Dashboard() {
 
     return (
         <Wrapper>
-            <StatusBar backgroundColor={theme.colors.primary} />
             <Header dashboardHeader />
             <Cards>
                 <HighlightCard title="Entradas" amount={highlightCardValues.deposit.amount} lastTransaction={`Última entrada ${highlightCardValues.deposit.lastTransaction}`} type="deposit"/>

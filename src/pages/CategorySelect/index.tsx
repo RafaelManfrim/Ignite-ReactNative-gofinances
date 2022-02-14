@@ -1,8 +1,7 @@
-import { FlatList, StatusBar } from 'react-native'
+import { FlatList } from 'react-native'
 import { Button } from '../../components/Form/Button'
 import { Header } from '../../components/Header'
 import { Wrapper } from '../../components/Wrapper'
-import theme from '../../global/styles/theme'
 import { categories } from '../../utils/categories'
 import { Category, Icon, Label, Footer } from './styles'
 
@@ -20,7 +19,6 @@ interface CategorySelectProps {
 export function CategorySelect({ category, setCategory, closeSelectCategory }: CategorySelectProps){
     return (
         <Wrapper>
-            <StatusBar backgroundColor={theme.colors.primary} />
             <Header title="Categorias" />
             <FlatList data={categories} keyExtractor={item => item.key} renderItem={({ item }) => (
                 <Category onPress={() => setCategory(item)} isActive={category.key === item.key}>

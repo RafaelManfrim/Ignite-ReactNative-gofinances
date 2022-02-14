@@ -3,6 +3,12 @@ import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 
+const LoadContainer = styled.View`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+`
+
 const ResumeContainer = styled.ScrollView``
 
 const MonthSelect = styled.View`
@@ -23,4 +29,4 @@ const Month = styled.Text`
     padding: 0 16px;
 `
 
-export { ResumeContainer, MonthSelect, MonthSelectIcon, MonthSelectButton, Month }
+export { LoadContainer, ResumeContainer, MonthSelect, MonthSelectIcon, MonthSelectButton, Month }

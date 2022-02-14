@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import { StatusBar, Modal, Alert } from 'react-native'
+import { Modal, Alert } from 'react-native'
 import { Wrapper } from '../../components/Wrapper'
 import { Header } from '../../components/Header'
 import { InputForm } from '../../components/Form/InputForm'
 import { Button } from '../../components/Form/Button'
-import theme from '../../global/styles/theme'
 import { Form, Fields, TypeSelectArea, Footer } from './styles'
 import { TransactionTypeButton } from '../../components/Form/TransactionTypeButton'
 import { CategorySelectButton } from '../../components/Form/CategorySelectButton'
@@ -18,7 +17,7 @@ import { useNavigation } from '@react-navigation/native'
 
 const schema = Yup.object().shape({
     name: Yup.string().required('Nome é obrigatório'),
-    amount: Yup.number().typeError('Digite um valor numério').positive('O valor deve ser positivo')
+    amount: Yup.number().typeError('Digite um valor numério').positive('O valor deve ser positivo').required("Valor é obrigatório")
 })
 
 type FormData = {
@@ -95,7 +94,6 @@ export default function TransactionRegister() {
 
     return (
         <Wrapper>
-            <StatusBar backgroundColor={theme.colors.primary} />
             <Header title="Cadastro" />
             <Form>
                 <Fields>
