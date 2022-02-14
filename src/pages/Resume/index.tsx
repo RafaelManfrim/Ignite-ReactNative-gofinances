@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { StatusBar } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import { VictoryPie } from "victory-native"
-import { ResumeContainer } from "./styles";
+import { ResumeContainer, MonthSelect, MonthSelectIcon, MonthSelectButton, Month } from "./styles";
 import theme from "../../global/styles/theme";
 import { Wrapper } from '../../components/Wrapper'
 import { Header } from "../../components/Header";
@@ -73,14 +74,25 @@ export function Resume() {
             <StatusBar backgroundColor={theme.colors.primary} />
             <Header title="Resumo" />            
 
-            <ResumeContainer>
+            <ResumeContainer showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: useBottomTabBarHeight() }} >
+                <MonthSelect>
+                    <MonthSelectButton>
+                        <MonthSelectIcon name="chevron-left" />
+                    </MonthSelectButton>
+                    <Month>Maio, 2020</Month>
+                    <MonthSelectButton>
+                        <MonthSelectIcon name="chevron-right" />
+                    </MonthSelectButton>
+                </MonthSelect>
+                
                 <VictoryPie 
                     data={totalByCategories} 
                     x="percentage" 
                     y="total" 
                     colorScale={totalByCategories.map(category => category.color)} 
                     style={{ labels: { fontSize: RFValue(18), fontWeight: 'bold', fill: '#FFF' } }} 
-                    labelRadius={75} 
+                    labelRadius={75}
+                    padding={{ top: 0, right: 28, left: 28 }}
                 />
 
                 {totalByCategories.map((category) => <HistoryCard key={category.id} color={category.color} title={category.name} amount={category.total} />)}
