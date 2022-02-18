@@ -19,7 +19,7 @@ export function SignIn() {
             await signInWithGoogle()
         } catch (err) {
             console.log(err)
-            Alert.alert('Não foi possível conectar a conta Foogle')
+            Alert.alert('Não foi possível conectar a conta Google')
         }
     }
 
