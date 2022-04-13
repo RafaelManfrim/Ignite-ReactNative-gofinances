@@ -23,6 +23,15 @@ export function SignIn() {
         }
     }
 
+    async function handleSignInWithApple() {
+        try {
+
+        } catch (err) {
+            console.log(err)
+            Alert.alert('Não foi possível conectar a conta Apple')
+        }
+    }
+
     return (
         <SignInContainer>
             <SignInHeader>
