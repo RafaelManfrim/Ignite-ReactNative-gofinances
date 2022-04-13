@@ -12,7 +12,7 @@ import { SignInContainer, SignInHeader, TitleWrapper, Title, SignInTitle, SignIn
 import { useAuth } from "../../contexts/AuthContext";
 
 export function SignIn() {
-    const { signInWithGoogle } = useAuth()
+    const { signInWithGoogle, signInWithApple } = useAuth()
 
     async function handleSignInWithGoogle() {
         try {
@@ -25,7 +25,7 @@ export function SignIn() {
 
     async function handleSignInWithApple() {
         try {
-
+            await signInWithApple()
         } catch (err) {
             console.log(err)
             Alert.alert('Não foi possível conectar a conta Apple')
@@ -46,7 +46,7 @@ export function SignIn() {
             <SignInFooter>
                 <FooterWrapper>
                     <SignInSocialButton title="Entrar com Google" svg={GoogleSvg} onPress={handleSignInWithGoogle} />
-                    <SignInSocialButton title="Entrar com Apple" svg={AppleSvg} />
+                    <SignInSocialButton title="Entrar com Apple" svg={AppleSvg} onPress={handleSignInWithApple} />
                 </FooterWrapper>
             </SignInFooter>
         </SignInContainer>
