@@ -19,6 +19,8 @@ export default function Dashboard() {
         total: { amount: 0, lastTransaction: '' },
     })
 
+    const { withdraw, deposit, total } = highlightCardValues
+
     const { user } = useAuth()
 
     const collectionKey = `@gofinances:transactions_user:${user.id}`
@@ -119,10 +121,24 @@ export default function Dashboard() {
         <Wrapper>
             <Header dashboardHeader />
             <Cards>
-                <HighlightCard title="Entradas" amount={highlightCardValues.deposit.amount} lastTransaction={`Última entrada ${highlightCardValues.deposit.lastTransaction}`} type="deposit" />
-
-                <HighlightCard title="Saídas" amount={highlightCardValues.withdraw.amount} lastTransaction={`Última saída ${highlightCardValues.withdraw.lastTransaction}`} type="withdraw" />
-                <HighlightCard title="Total" amount={highlightCardValues.total.amount} lastTransaction={`Última transação ${highlightCardValues.total.lastTransaction}`} type="total" />
+                <HighlightCard
+                    type="deposit"
+                    title="Entradas"
+                    amount={deposit.amount}
+                    lastTransaction={deposit.lastTransaction !== '' ? `Última entrada ${deposit.lastTransaction}` : 'Nenhuma entrada registrada'}
+                />
+                <HighlightCard
+                    type="withdraw"
+                    title="Saídas"
+                    amount={withdraw.amount}
+                    lastTransaction={withdraw.lastTransaction !== '' ? `Última saída ${withdraw.lastTransaction}` : 'Nenhuma saída registrada'}
+                />
+                <HighlightCard
+                    type="total"
+                    title="Total"
+                    amount={total.amount}
+                    lastTransaction={total.lastTransaction !== '' ? `Última transação ${total.lastTransaction}` : 'Nenhuma transação registrada'}
+                />
             </Cards>
             <Transactions transactions={transactions} />
         </Wrapper>
