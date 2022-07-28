@@ -32,6 +32,9 @@ interface AuthContextProviderProps {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     const [user, setUser] = useState({} as User)
+    const [userStorageLoading, setUserStorageLoading] = useState(true)
+
+    const useStorageKey = '@gofinances:user'
 
     async function signInWithGoogle() {
         try {
@@ -57,7 +60,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
                 }
 
                 setUser(userLogged)
-                await AsyncStorage.setItem('@gofinances:user', JSON.stringify(userLogged))
+                await AsyncStorage.setItem(useStorageKey, JSON.stringify(userLogged))
             }
 
         } catch (err: any) {
@@ -83,12 +86,27 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
                 }
 
                 setUser(userLogged)
-                await AsyncStorage.setItem('@gofinances:user', JSON.stringify(userLogged))
+                await AsyncStorage.setItem(useStorageKey, JSON.stringify(userLogged))
             }
         } catch (err: any) {
             throw new Error(err)
         }
     }
+
+    useEffect(() => {
+        async function loadUserInStorage() {
+            const userStoraged = await AsyncStorage.getItem(useStorageKey)
+
+            if (userStoraged) {
+                const userLogged = JSON.parse(userStoraged)
+                setUser(userLogged)
+            }
+
+            setUserStorageLoading(false)
+        }
+
+        loadUserInStorage()
+    }, [])
 
     return (
         <AuthContext.Provider value={{ user, signInWithGoogle, signInWithApple }}>
