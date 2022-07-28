@@ -16,5 +16,10 @@
     "package": "rafamanfrim.gofinances",
     "versionCode": 1
   },
-  "name": "gofinances"
+  "name": "gofinances",
+  "splash": {
+    "image": "./src/assets/splash.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#5636D3"
+  }
 }

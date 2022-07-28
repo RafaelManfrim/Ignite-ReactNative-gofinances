@@ -85,7 +85,7 @@ export function Resume() {
             })
 
             setTotalByCategories(totalByCategory)
-            setIsLoading(false)
+            // setIsLoading(false)
         }
     }
 
