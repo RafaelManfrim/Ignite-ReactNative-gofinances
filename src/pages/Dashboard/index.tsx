@@ -1,13 +1,15 @@
 import React, { useCallback, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 import { Wrapper } from '../../components/Wrapper'
 import { Header } from '../../components/Header'
 import { HighlightCard } from '../../components/HighlightCard'
 import { DataListProps, Transactions } from '../../components/Transactions'
-import { Cards } from './styles'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import { categories } from '../../utils/categories'
-import { useFocusEffect } from '@react-navigation/native'
+import { useAuth } from '../../contexts/AuthContext'
 import { TransactionFromStorage } from '../../types'
+import { Cards } from './styles'
 
 export default function Dashboard() {
     const [transactions, setTransactions] = useState<DataListProps[]>([])
@@ -17,7 +19,9 @@ export default function Dashboard() {
         total: { amount: 0, lastTransaction: '' },
     })
 
-    const collectionKey = '@gofinances:transactions'
+    const { user } = useAuth()
+
+    const collectionKey = `@gofinances:transactions_user:${user.id}`
 
     async function loadTransactions() {
         const response = await AsyncStorage.getItem(collectionKey)

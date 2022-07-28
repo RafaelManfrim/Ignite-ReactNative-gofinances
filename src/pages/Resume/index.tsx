@@ -14,6 +14,7 @@ import { categories } from "../../utils/categories";
 import { TransactionFromStorage } from "../../types";
 import { RFValue } from "react-native-responsive-fontsize";
 import { useFocusEffect } from "@react-navigation/native";
+import { useAuth } from "../../contexts/AuthContext";
 
 type CategoryData = {
     id: string
@@ -28,10 +29,12 @@ export function Resume() {
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [isLoading, setIsLoading] = useState(true)
 
-    const collectionKey = '@gofinances:transactions'
+    const { user } = useAuth()
+
+    const collectionKey = `@gofinances:transactions_user:${user.id}`
 
     function handleChangeData(action: 'prev' | 'next') {
-        if(action === 'next') {
+        if (action === 'next') {
             setSelectedDate(addMonths(selectedDate, 1))
         } else {
             setSelectedDate(subMonths(selectedDate, 1))
@@ -43,14 +46,14 @@ export function Resume() {
         const response = await AsyncStorage.getItem(collectionKey)
         const responseFormatted = response ? JSON.parse(response) : {}
 
-        if(responseFormatted.transactions) {
-            const transactions: TransactionFromStorage[]  = responseFormatted.transactions
+        if (responseFormatted.transactions) {
+            const transactions: TransactionFromStorage[] = responseFormatted.transactions
 
             const expensives = transactions.filter(transaction => {
                 const transactionMonth = new Date(transaction.date).getMonth()
                 const transactionYear = new Date(transaction.date).getFullYear()
 
-                if(transaction.type === 'withdraw' && transactionMonth === selectedDate.getMonth() && transactionYear === selectedDate.getFullYear()) {
+                if (transaction.type === 'withdraw' && transactionMonth === selectedDate.getMonth() && transactionYear === selectedDate.getFullYear()) {
                     return transaction
                 }
             })
@@ -63,12 +66,12 @@ export function Resume() {
                 let categorySum = 0
 
                 expensives.forEach(expensive => {
-                    if(expensive.category === category.key) {
+                    if (expensive.category === category.key) {
                         categorySum += expensive.amount
                     }
                 })
 
-                if(categorySum > 0) {
+                if (categorySum > 0) {
                     const percentage = (categorySum / expensivesTotal * 100).toFixed(0) + '%'
 
                     totalByCategory.push({
@@ -103,18 +106,18 @@ export function Resume() {
                         <MonthSelectButton onPress={() => handleChangeData('prev')}>
                             <MonthSelectIcon name="chevron-left" />
                         </MonthSelectButton>
-                        <Month>{ format(selectedDate, 'MMMM, yyyy', { locale: ptBR }) }</Month>
+                        <Month>{format(selectedDate, 'MMMM, yyyy', { locale: ptBR })}</Month>
                         <MonthSelectButton onPress={() => handleChangeData('next')}>
                             <MonthSelectIcon name="chevron-right" />
                         </MonthSelectButton>
                     </MonthSelect>
 
-                    <VictoryPie 
-                        data={totalByCategories} 
-                        x="percentage" 
-                        y="total" 
-                        colorScale={totalByCategories.map(category => category.color)} 
-                        style={{ labels: { fontSize: RFValue(18), fontWeight: 'bold', fill: '#FFF' } }} 
+                    <VictoryPie
+                        data={totalByCategories}
+                        x="percentage"
+                        y="total"
+                        colorScale={totalByCategories.map(category => category.color)}
+                        style={{ labels: { fontSize: RFValue(18), fontWeight: 'bold', fill: '#FFF' } }}
                         labelRadius={75}
                         padding={{ top: 0, right: 28, left: 28 }}
                     />

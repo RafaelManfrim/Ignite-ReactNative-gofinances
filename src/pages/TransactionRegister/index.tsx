@@ -14,6 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import uuid from 'react-native-uuid'
 import { useNavigation } from '@react-navigation/native'
+import { useAuth } from '../../contexts/AuthContext'
 
 const schema = Yup.object().shape({
     name: Yup.string().required('Nome é obrigatório'),
@@ -30,11 +31,12 @@ export default function TransactionRegister() {
     const [typeSelected, setTypeSelected] = useState('')
     const [categoryModalOpen, setCategoryModalOpen] = useState(false)
     const { navigate } = useNavigation()
+    const { user } = useAuth()
 
-    const collectionKey = '@gofinances:transactions'
+    const collectionKey = `@gofinances:transactions_user:${user.id}`
 
-    const { control, handleSubmit, formState: { errors }, reset } = useForm({ 
-        resolver: yupResolver(schema) 
+    const { control, handleSubmit, formState: { errors }, reset } = useForm({
+        resolver: yupResolver(schema)
     })
 
     function handleTypeSelect(type: 'deposit' | 'withdraw') {
@@ -50,11 +52,11 @@ export default function TransactionRegister() {
     }
 
     async function handleRegister(values: FormData) {
-        if(!typeSelected) {
+        if (!typeSelected) {
             return Alert.alert('Selecione o tipo da transação')
-        } 
+        }
 
-        if(category.key === 'category') {
+        if (category.key === 'category') {
             return Alert.alert('Selecione a categoria')
         }
 
@@ -71,12 +73,12 @@ export default function TransactionRegister() {
             const storedData = await AsyncStorage.getItem(collectionKey)
             const currentData = storedData ? JSON.parse(storedData) : {}
 
-            if(currentData.transactions) {
+            if (currentData.transactions) {
                 const dataFormated = { transactions: [...currentData.transactions, data] }
-                
+
                 await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormated))
             } else {
-                const dataFormated = { transactions: [ data ] }
+                const dataFormated = { transactions: [data] }
 
                 await AsyncStorage.setItem(collectionKey, JSON.stringify(dataFormated))
             }
@@ -110,7 +112,7 @@ export default function TransactionRegister() {
                 </Footer>
             </Form>
             <Modal visible={categoryModalOpen}>
-                <CategorySelect category={category} setCategory={setCategory} closeSelectCategory={handleCloseSelectCategoryModal}  />
+                <CategorySelect category={category} setCategory={setCategory} closeSelectCategory={handleCloseSelectCategoryModal} />
             </Modal>
         </Wrapper>
     )
