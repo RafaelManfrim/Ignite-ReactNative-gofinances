@@ -7,7 +7,7 @@ import 'intl/locale-data/jsonp/pt-BR';
 
 import { Routes } from './src/routes';
 
-import { AuthContextProvider } from './src/contexts/AuthContext';
+import { AuthContextProvider, useAuth } from './src/contexts/AuthContext';
 
 import theme from './src/global/styles/theme'
 
@@ -18,7 +18,9 @@ export default function App() {
     Poppins_700Bold
   })
 
-  if (!fontsLoaded) {
+  const { userStorageLoading } = useAuth()
+
+  if (!fontsLoaded || userStorageLoading) {
     return <AppLoading />
   }
 

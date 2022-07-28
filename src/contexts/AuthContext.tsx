@@ -15,6 +15,8 @@ interface AuthContextData {
     user: User
     signInWithGoogle: () => Promise<void>
     signInWithApple: () => Promise<void>
+    signOut: () => Promise<void>
+    userStorageLoading: boolean
 }
 
 interface GoogleAutorizationResponse {
@@ -34,7 +36,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     const [user, setUser] = useState({} as User)
     const [userStorageLoading, setUserStorageLoading] = useState(true)
 
-    const useStorageKey = '@gofinances:user'
+    const userStorageKey = '@gofinances:user'
 
     async function signInWithGoogle() {
         try {
@@ -60,7 +62,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
                 }
 
                 setUser(userLogged)
-                await AsyncStorage.setItem(useStorageKey, JSON.stringify(userLogged))
+                await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged))
             }
 
         } catch (err: any) {
@@ -78,24 +80,31 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
             })
 
             if (credential) {
+                const userName = credential.fullName!.givenName!
+
                 const userLogged = {
                     id: String(credential.user),
                     email: credential.email!,
-                    name: credential.fullName!.givenName!,
-                    photo: undefined
+                    name: userName,
+                    photo: `https://ui-avatars.com/api/?name=${userName}&length=1`
                 }
 
                 setUser(userLogged)
-                await AsyncStorage.setItem(useStorageKey, JSON.stringify(userLogged))
+                await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged))
             }
         } catch (err: any) {
             throw new Error(err)
         }
     }
 
+    async function signOut() {
+        setUser({} as User)
+        await AsyncStorage.removeItem(userStorageKey)
+    }
+
     useEffect(() => {
         async function loadUserInStorage() {
-            const userStoraged = await AsyncStorage.getItem(useStorageKey)
+            const userStoraged = await AsyncStorage.getItem(userStorageKey)
 
             if (userStoraged) {
                 const userLogged = JSON.parse(userStoraged)
@@ -109,7 +118,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     }, [])
 
     return (
-        <AuthContext.Provider value={{ user, signInWithGoogle, signInWithApple }}>
+        <AuthContext.Provider value={{ user, userStorageLoading, signInWithGoogle, signInWithApple, signOut }}>
             {children}
         </AuthContext.Provider>
     )

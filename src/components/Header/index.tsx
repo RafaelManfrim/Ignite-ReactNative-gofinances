@@ -1,23 +1,26 @@
+import { useAuth } from '../../contexts/AuthContext'
 import { HeaderContainer, UserInfo, Profile, Avatar, User, Greatings, UserName, LogoutButton, Icon, HeaderTitle } from './styles'
 
 interface HeaderProps {
     dashboardHeader?: boolean
-    title?: string 
+    title?: string
 }
 
 export function Header({ dashboardHeader = false, title }: HeaderProps) {
+    const { user, signOut } = useAuth()
+
     return (
         <HeaderContainer size={dashboardHeader ? 28 : 14}>
             {dashboardHeader ? (
                 <UserInfo>
                     <Profile>
-                        <Avatar source={{ uri: 'https://avatars.githubusercontent.com/u/72226013?v=4' }} />
+                        <Avatar source={{ uri: user.photo }} />
                         <User>
                             <Greatings>Olá,</Greatings>
-                            <UserName>Rafael</UserName>
+                            <UserName>{user.name}</UserName>
                         </User>
                     </Profile>
-                    <LogoutButton onPress={() => {}}>
+                    <LogoutButton onPress={signOut}>
                         <Icon name="power" />
                     </LogoutButton>
                 </UserInfo>
