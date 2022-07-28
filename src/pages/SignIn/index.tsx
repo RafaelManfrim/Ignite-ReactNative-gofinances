@@ -21,11 +21,10 @@ export function SignIn() {
     async function handleSignInWithGoogle() {
         try {
             setIsLoading(true)
-            return await signInWithGoogle()
+            await signInWithGoogle()
         } catch (err) {
             console.log(err)
             Alert.alert('Não foi possível conectar a conta Google')
-        } finally {
             setIsLoading(false)
         }
     }
@@ -33,11 +32,10 @@ export function SignIn() {
     async function handleSignInWithApple() {
         try {
             setIsLoading(true)
-            return await signInWithApple()
+            await signInWithApple()
         } catch (err) {
             console.log(err)
             Alert.alert('Não foi possível conectar a conta Apple')
-        } finally {
             setIsLoading(false)
         }
     }
