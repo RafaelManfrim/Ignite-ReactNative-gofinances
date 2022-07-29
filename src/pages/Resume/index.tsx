@@ -1,20 +1,22 @@
 import React, { useCallback, useState } from "react";
 import { ActivityIndicator } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs"
 import AsyncStorage from "@react-native-async-storage/async-storage"
+import { RFValue } from "react-native-responsive-fontsize";
 import { addMonths, subMonths, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { VictoryPie } from "victory-native"
-import { LoadContainer, ResumeContainer, MonthSelect, MonthSelectIcon, MonthSelectButton, Month } from "./styles";
+
 import theme from "../../global/styles/theme";
 import { Wrapper } from '../../components/Wrapper'
 import { Header } from "../../components/Header";
 import { HistoryCard } from "../../components/HistoryCard";
 import { categories } from "../../utils/categories";
 import { TransactionFromStorage } from "../../types";
-import { RFValue } from "react-native-responsive-fontsize";
-import { useFocusEffect } from "@react-navigation/native";
 import { useAuth } from "../../contexts/AuthContext";
+
+import { LoadContainer, ResumeContainer, MonthSelect, MonthSelectIcon, MonthSelectButton, Month } from "./styles";
 
 type CategoryData = {
     id: string
@@ -28,6 +30,7 @@ export function Resume() {
     const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([])
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [isLoading, setIsLoading] = useState(true)
+    const bottomTabBarHeight = useBottomTabBarHeight()
 
     const { user } = useAuth()
 
@@ -85,7 +88,7 @@ export function Resume() {
             })
 
             setTotalByCategories(totalByCategory)
-            // setIsLoading(false)
+            setIsLoading(false)
         }
     }
 
@@ -101,7 +104,7 @@ export function Resume() {
                     <ActivityIndicator color={theme.colors.primary} size="large" />
                 </LoadContainer>
             ) : (
-                <ResumeContainer showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: useBottomTabBarHeight() }} >
+                <ResumeContainer showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: bottomTabBarHeight }} >
                     <MonthSelect>
                         <MonthSelectButton onPress={() => handleChangeData('prev')}>
                             <MonthSelectIcon name="chevron-left" />
